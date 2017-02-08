@@ -125,6 +125,7 @@ class PES_File_PDF_Splitter {
     }
   }
 
+
   public function convertToIMG ($destination, $qulity=100, $page=1, $size_x=0, $size_y=0) {
       $this->setXResolution(180);
       $this->setYResolution(180);
