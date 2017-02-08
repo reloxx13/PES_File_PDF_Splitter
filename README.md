@@ -30,3 +30,5 @@ is available by running "php pdf_splitter.php --help" on the command line.
 Author
 ===
 Peter E. Snyder - snyderp@gmail.com
+
+Fork from  https://github.com/snyderp/PES_File_PDF_Splitter
