@@ -125,6 +125,50 @@ class PES_File_PDF_Splitter {
     }
   }
 
+  public function convertToIMG ($destination, $qulity=100, $page=1, $size_x=0, $size_y=0) {
+      $this->setXResolution(180);
+      $this->setYResolution(180);
+      if ( ! is_dir($destination) OR ! is_writeable($destination)) {
+        throw new Exception('"' . $destination . '" is not a writeable directory.');
+      } else {
+            if(class_exists(imagick))
+                $pdf = new imagick();
+            else{
+                echo 'imagick not support' . PHP_EOL;
+                return;
+            }
+            $pdf->setResolution($this->x_resolution, $this->y_resolution);
+            $pdf->readImage($this->PDFPath());
+            $destination = rtrim($destination, DIRECTORY_SEPARATOR) . DIRECTORY_SEPARATOR;
+            $filename_parts = $this->parseFileName(basename($this->PDFPath()));
+            $generated_images = array();
+
+            $p = 0;
+            foreach ($pdf as $index => $a_page) {
+                $p++;
+                if($page != $p && $page > 0)
+                  continue;
+                
+                // 第一页与原pdf名相同
+                $file_name = $destination . $filename_parts['base'] . '.jpg';
+                if($index)
+                $file_name = $destination . $filename_parts['base'] . '-' . ($index + 1) . '.jpg';
+
+                $a_page->setImageFormat('jpg');
+                $a_page->setImageCompressionQuality($qulity);
+                if($size_x && $size_y)
+                  $a_page->thumbnailImage($size_x, $size_y, true, true);
+
+                $a_page->setFilename($file_name);
+                $a_page->writeImage($file_name);
+
+                $generated_images[] = $file_name;
+            }
+            return $generated_images;
+      }
+      
+  }
+
   // ===================
   // ! Getter / Setters
   // ===================
