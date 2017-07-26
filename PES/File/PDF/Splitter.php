@@ -212,7 +212,7 @@ class PES_File_PDF_Splitter {
                 $a_page->setFilename($file_name);
                 $a_page->writeImage($file_name);
 
-                $generated_images[] = $file_name;
+                $generated_images[$p] = $file_name;
             }
             return $generated_images;
         }
