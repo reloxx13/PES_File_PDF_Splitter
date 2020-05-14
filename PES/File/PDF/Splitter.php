@@ -19,7 +19,7 @@
  * @category    File
  * @package     File
  * @author      Peter Snyder <snyderp@gmail.com>
- * @version     1.0
+ * @version     1.2.2
  * @see         http://www.php.net/manual/en/class.imagick.php
  */
 class PES_File_PDF_Splitter {
