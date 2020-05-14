@@ -1,17 +1,24 @@
 {
-    "name": "reloxx13/pes_file_pdf_splitter",
-    "type": "library",
-    "authors": [
-        {
-            "name": "Cong Peijun",
-            "email": "congpeijun@jiemo.net"
-        }
-    ],
-    "minimum-stability": "dev",
-    "autoload": {
-        "psr-0": {
-            "": "./"
-        }
+  "name": "reloxx13/pes_file_pdf_splitter",
+  "type": "library",
+  "version": "1.0.1",
+  "authors": [
+    {
+      "name": "Cong Peijun",
+      "email": "congpeijun@jiemo.net"
     },
-    "require": {}
+    {
+      "name": "reloxx13",
+      "email": "reloxx@interia.pl"
+    }
+  ],
+  "minimum-stability": "dev",
+  "autoload": {
+    "psr-0": {
+      "": "./"
+    }
+  },
+  "require": {
+    "pear/console_getargs": "dev-master"
+  }
 }

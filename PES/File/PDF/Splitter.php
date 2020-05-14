@@ -85,14 +85,14 @@ class PES_File_PDF_Splitter {
 	 */
 	public function convertToPNG($destination) {
 		
-		if (!is_dir($destination) OR !is_writeable($destination)) {
+		if (!is_dir($destination) or !is_writeable($destination)) {
 			
 			throw new Exception('"' . $destination . '" is not a writeable directory.');
 			
 		}
 		else {
 			
-			$pdf = new imagick();
+			$pdf = new Imagick();
 			$pdf->setResolution($this->x_resolution, $this->y_resolution);
 			$pdf->readImage($this->PDFPath());
 			
@@ -116,6 +116,7 @@ class PES_File_PDF_Splitter {
 					
 					$a_page->setImageFormat('png');
 					$a_page->setFilename($file_name);
+					$a_page->stripImage();
 					$a_page->writeImage($file_name);
 				}
 				
@@ -130,7 +131,7 @@ class PES_File_PDF_Splitter {
 	public function convertToIMG($destination, $qulity = 100, $page = 1, $size_x = 0, $size_y = 0) {
 		$this->setXResolution(180);
 		$this->setYResolution(180);
-		if (!is_dir($destination) OR !is_writeable($destination)) {
+		if (!is_dir($destination) or !is_writeable($destination)) {
 			throw new Exception('"' . $destination . '" is not a writeable directory.');
 		}
 		else {
@@ -167,6 +168,7 @@ class PES_File_PDF_Splitter {
 				}
 				
 				$a_page->setFilename($file_name);
+				$a_page->stripImage();
 				$a_page->writeImage($file_name);
 				
 				$generated_images[] = $file_name;
@@ -180,9 +182,9 @@ class PES_File_PDF_Splitter {
 		if (empty($page)) {
 			return;
 		}
-		$this->setXResolution(180);
-		$this->setYResolution(180);
-		if (!is_dir($destination) OR !is_writeable($destination)) {
+		//		$this->setXResolution(180);
+		//		$this->setYResolution(180);
+		if (!is_dir($destination) or !is_writeable($destination)) {
 			throw new Exception('"' . $destination . '" is not a writeable directory.');
 		}
 		else {
@@ -221,6 +223,7 @@ class PES_File_PDF_Splitter {
 				}
 				
 				$a_page->setFilename($file_name);
+				$a_page->stripImage();
 				$a_page->writeImage($file_name);
 				
 				$generated_images[$p] = $file_name;
@@ -256,7 +259,7 @@ class PES_File_PDF_Splitter {
 	 */
 	public function setPDFPath($path) {
 		
-		if (!is_file($path) OR !is_readable($path)) {
+		if (!is_file($path) or !is_readable($path)) {
 			
 			throw new Exception('"' . $path . '" is not a readble file.');
 			
@@ -347,7 +350,7 @@ class PES_File_PDF_Splitter {
 	 */
 	protected function parseFileName($file_name) {
 		
-		if (empty($file_name) OR !is_string($file_name)) {
+		if (empty($file_name) or !is_string($file_name)) {
 			
 			return FALSE;
 			
